@@ -45,7 +45,7 @@ pipeline {
         stage('Deploy Image') {
             steps {
                     sh '''
-                        sudo usermod -a -G docker jenkins
+                        sudo chmod 666 /var/run/docker.sock
                         docker rm -f sample-app-container 2>/dev/null || true
                         docker run -d --name sample-app-container -p 3000:3000 jessiepeng66/sample-app:jks
                     '''
